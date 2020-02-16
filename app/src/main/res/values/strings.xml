@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">MapApp</string>
+    <string name="last">Last</string>
+    <string name="next">Next</string>
+    <string name="title">Choose your file and start the game!</string>
+    <string name="start">Start!</string>
+    <string name="solution">Solution</string>
+    <string name="restart">Restart</string>
+    <string name="leave">Leave game!</string>
+    <string name="toFirstQuestion">Press "NEXT" for the first question!</string>
+    <string name="endOfCategory">You answered all questions of this category!\n Restart or choose an new file.</string>
+    
+    <string-array name="listViewItems">
+        <item name="biology">Biology</item>
+        <item name="physics">Physics</item>
+        <item name="math">Math</item>
+    </string-array>
+</resources>

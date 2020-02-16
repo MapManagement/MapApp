@@ -1,0 +1,37 @@
+{
+  "data":
+  {
+    "biology":
+    {
+      "cell_to_organ":
+      {
+        "Nenne wichtige Zellorganellen": "Golgi Apparat, Vakuole, Cytoskelett, ER, Ribosomen, Mitchondrien, Nucelolus, Lysosomen, Chloroplasten",
+        "Was besitzt die Pflanzenzelle im Gegensatz zur Tierzelle?": "Vakuole, Chloroplasten, Zellwand",
+        "Nenne die Fotosynthesegleichung": "6CO2 + 12H2O -> C6H2=6",
+        "Aufbau eines Mitochondriums": "Work in progress!",
+        "Aufbau eines Chloroplasten": "Work in progess!",
+        "Aufbau einer Bakterienzelle": "Work in progress!",
+        "Was ist Diffusion?": "Diffusion ist die durch Eigenbewegung herbeigef¨uhrte gleichm¨aßige Verteilung der Teilchen im Raum, bis zu einem Konzentrationsausgleich. Ursache ist die \"Brownsche Molekularbewegung\".",
+        "Was ist Osmose?": "Osmose ist die Diffusion durch eine selektiv permeable Membran. Wasser und kleine Teilchen k¨onnen die Membran passieren, andere Stoffe wegen ihrer Gr¨oße nicht.",
+        "Erkläre Plasmolyse": "Konzentration(Salz, Zucker...) ist Außen höher als Innen -> hypertonische Lösung -> Zelle schrumpft",
+        "Erkläre Deplasmolyse": "Konzentration(Salz, Zucker...) ist Innen höher als Außen -> hypotonische Lösung -> Zelle bläht sich auf",
+        "Error": "Couldn't find any questions!"
+      },
+
+      "enzymology":
+      {
+
+      },
+
+      "molecular biology":
+      {
+
+      },
+
+      "practical biology":
+      {
+
+      }
+    }
+  }
+}
