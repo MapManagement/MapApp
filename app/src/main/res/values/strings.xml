@@ -10,9 +10,7 @@
     <string name="toFirstQuestion">Press "NEXT" for the first question!</string>
     <string name="endOfCategory">You answered all questions of this category!\n Restart or choose an new file.</string>
     
-    <string-array name="listViewItems">
-        <item name="biology">Biology</item>
-        <item name="physics">Physics</item>
-        <item name="math">Math</item>
-    </string-array>
+    <array name="MainListItems">
+        <item>Test</item>
+    </array>
 </resources>
