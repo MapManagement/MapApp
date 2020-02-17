@@ -4,12 +4,8 @@ import org.json.JSONObject
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.ListView
 import kotlinx.android.synthetic.main.activity_game.*
-import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONException
 import java.io.InputStream
 
@@ -19,22 +15,15 @@ var availableQuestions: JSONObject = JSONObject("""{"empty": "empty"}""")
 
 class GameActivity: AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
         last_button.setOnClickListener {parseJSON("data.json")}
         next_button.setOnClickListener {nextQuestion()}
         solution_button.setOnClickListener {showSolution()}
-        restart_button.setOnClickListener{startingGame()}
+        restart_button.setOnClickListener{}
         leave_button.setOnClickListener{}
-    }
-
-    private fun startingGame() {
-        last_button.visibility = View.VISIBLE
-        next_button.visibility = View.VISIBLE
-        solution_button.visibility = View.VISIBLE
-        mytext.text= getString(R.string.toFirstQuestion)
     }
 
     private fun nextQuestion() {

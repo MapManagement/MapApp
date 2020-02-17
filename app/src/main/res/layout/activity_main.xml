@@ -12,6 +12,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:divider="@color/purple"
+            android:dividerHeight="1dp"
             android:entries="@array/MainListItems"
 
             app:layout_constraintTop_toTopOf="parent"

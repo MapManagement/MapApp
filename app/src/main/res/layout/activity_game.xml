@@ -17,7 +17,7 @@
             app:layout_constraintBottom_toBottomOf="@id/solution_button"
             app:layout_constraintStart_toEndOf="@id/last_button"
             app:layout_constraintEnd_toStartOf="@id/next_button"
-            app:layout_constraintTop_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="@id/restart_button"/>
 
     <Button
             android:id="@+id/last_button"
@@ -25,7 +25,6 @@
             android:text="@string/last"
             android:layout_width="60dp"
             android:layout_height="0dp"
-            android:visibility="gone"
 
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +36,6 @@
             android:text="@string/next"
             android:layout_width="60dp"
             android:layout_height="0dp"
-            android:visibility="gone"
 
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -49,7 +47,6 @@
             android:text="@string/solution"
             android:layout_width="0dp"
             android:layout_height="75dp"
-            android:visibility="gone"
 
             app:layout_constraintBottom_toBottomOf="@id/last_button"
             app:layout_constraintStart_toEndOf="@id/last_button"
@@ -76,5 +73,6 @@
             app:layout_constraintBottom_toBottomOf="@id/last_button"
             app:layout_constraintStart_toEndOf="@id/last_button"
             app:layout_constraintEnd_toStartOf="@id/next_button"/>
+    
 
 </androidx.constraintlayout.widget.ConstraintLayout>

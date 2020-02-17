@@ -11,6 +11,5 @@
     <string name="endOfCategory">You answered all questions of this category!\n Restart or choose an new file.</string>
     
     <array name="MainListItems">
-        <item>Test</item>
     </array>
 </resources>
