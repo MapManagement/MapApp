@@ -10,6 +10,8 @@ import android.widget.Toast
 
 val categories = GameActivity().parseJSON("data.json")
 
+const val  CATEGORY_NAME = "com.example.mappapp.CAT_NAME"
+
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,13 +24,14 @@ class MainActivity : AppCompatActivity() {
 
         listView.setOnItemClickListener { adapterview, view, i, l ->
             Toast.makeText(applicationContext, subjects[i], Toast.LENGTH_SHORT).show()
-            openSubCategories("test")
+            openSubCategories(subjects[i])
         }
     }
 
     private fun openSubCategories(category: String) {
-        val intent = Intent(this, GameActivity::class.java)
+        val intent = Intent(this, GameActivity::class.java).apply {
+            putExtra(CATEGORY_NAME, category)
+        }
         startActivity(intent)
-
     }
 }

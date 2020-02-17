@@ -2,6 +2,7 @@ package com.example.mapapp
 
 import org.json.JSONObject
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,15 +10,21 @@ import kotlinx.android.synthetic.main.activity_game.*
 import org.json.JSONException
 import java.io.InputStream
 
+var currentCategory: String? = ""
 var currentSolution: String = ""
 var currentQuestion: String = ""
 var availableQuestions: JSONObject = JSONObject("""{"empty": "empty"}""")
 
+
 class GameActivity: AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+
+        val categoryName = intent.getStringExtra(CATEGORY_NAME)
+        currentCategory = categoryName
 
         last_button.setOnClickListener {parseJSON("data.json")}
         next_button.setOnClickListener {nextQuestion()}
@@ -29,7 +36,7 @@ class GameActivity: AppCompatActivity() {
     private fun nextQuestion() {
         val jsonString = parseJSON("data.json")
         if ( currentQuestion.isEmpty()) {
-            val category = getQuestions(jsonString, "biology", "cell_to_organ")
+            val category = getQuestions(jsonString, currentCategory.toString(), "cell_to_organ")
             chooseQuestionAndSolution(category)
         }
         else {
@@ -53,7 +60,7 @@ class GameActivity: AppCompatActivity() {
         return jsonObj
     }
 
-    private fun getQuestions(json: JSONObject, subject: String, category: String): JSONObject {
+    private fun getQuestions(json: JSONObject, category: String, subject: String): JSONObject {
         val jsonData = json.getJSONObject("data")
         val jsonSubject = jsonData.getJSONObject(subject)
         val jsonCategory = jsonSubject.getJSONObject(category)
