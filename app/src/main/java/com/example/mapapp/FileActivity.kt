@@ -39,6 +39,11 @@ class FileActivity: AppCompatActivity() {
        val intent = Intent(this, GameActivity::class.java).apply {
            putExtra(SUB_CATEGORY_NAME, subCategoryName)
        }
+
+        currentSolution = ""
+        currentQuestion = ""
+        currentSubCategory = ""
+        availableQuestions = JSONObject("""{"empty": "empty"}""")
         startActivity(intent)
     }
 

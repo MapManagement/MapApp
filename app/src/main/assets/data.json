@@ -3,7 +3,7 @@
   {
     "biology":
     {
-      "cell_to_organ":
+      "Von der Zelle zum Organ":
       {
         "Nenne wichtige Zellorganellen": "Golgi Apparat, Vakuole, Cytoskelett, ER, Ribosomen, Mitchondrien, Nucelolus, Lysosomen, Chloroplasten",
         "Was besitzt die Pflanzenzelle im Gegensatz zur Tierzelle?": "Vakuole, Chloroplasten, Zellwand",
@@ -18,17 +18,19 @@
         "Error": "Couldn't find any questions!"
       },
 
-      "enzymology":
+      "Enzymatik":
+      {
+        "Was ist ein Enzym/Katalysator?": "Ein Enzym ist ein Biokatalysator, welcher chemische Prozesse beschleunigt",
+        "Aus was bestehen Enzyme?": "Ein Enzym ist besteht aus vielen Amonosäuren und gehört so zu den Proteinen",
+        "Ekläre die allg. Strukturformel eines Enzyms": "Work in progress!"
+      },
+
+      "Molekularbiologie":
       {
 
       },
 
-      "molecular biology":
-      {
-
-      },
-
-      "practical biology":
+      "Angewandte Biologie":
       {
 
       }
