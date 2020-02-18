@@ -29,7 +29,6 @@ class FileActivity: AppCompatActivity() {
         subCategories.forEach { subCategoriesArray.add(it) }
 
         gridView.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, subCategoriesArray)
-        setAllItems(jsonSubCategory)
 
         gridView.setOnItemClickListener { parent, view, position, id ->
             openSubCategory(subCategoriesArray[position])
@@ -41,10 +40,6 @@ class FileActivity: AppCompatActivity() {
            putExtra(SUB_CATEGORY_NAME, subCategoryName)
        }
         startActivity(intent)
-    }
-
-    private fun setAllItems(json: JSONObject) {
-
     }
 
     fun parseJSON(file: String): JSONObject {

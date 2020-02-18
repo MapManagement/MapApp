@@ -2,7 +2,6 @@ package com.example.mapapp
 
 import org.json.JSONObject
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -67,7 +66,6 @@ class GameActivity: AppCompatActivity() {
 
     private fun chooseQuestionAndSolution(jsonQAS: JSONObject= availableQuestions) {
         val length = jsonQAS.length()
-        println(length)
         if (length != 1) {
             val randInt = (0 until length - 1).random()
             val questions = jsonQAS.keys()
@@ -100,9 +98,7 @@ class GameActivity: AppCompatActivity() {
     }
 
     private fun deleteEntries() {
-        println(availableQuestions)
         availableQuestions.remove(currentQuestion)
-        println(availableQuestions)
     }
 
     private fun endOfCategory() {

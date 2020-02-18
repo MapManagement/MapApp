@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
 
-var categories = GameActivity().parseJSON("data.json")
 
 const val  CATEGORY_NAME = "com.example.mappapp.CATEGORY_NAME"
 
