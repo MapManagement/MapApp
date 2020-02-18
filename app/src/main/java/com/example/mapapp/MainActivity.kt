@@ -24,11 +24,11 @@ class MainActivity : AppCompatActivity() {
 
         listView.setOnItemClickListener { adapterview, view, i, l ->
             Toast.makeText(applicationContext, subjects[i], Toast.LENGTH_SHORT).show()
-            showFiles(subjects[i])
+            showSubCategories(subjects[i])
         }
     }
 
-    private fun showFiles(category: String) {
+    private fun showSubCategories(category: String) {
         val intent = Intent(this, FileActivity::class.java).apply {
             putExtra(CATEGORY_NAME, category)
         }

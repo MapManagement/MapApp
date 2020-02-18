@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_game.*
 import org.json.JSONException
 import java.io.InputStream
 
-var currentFile: String? = ""
+var currentSubCategory: String? = ""
 var currentSolution: String = ""
 var currentQuestion: String = ""
 var availableQuestions: JSONObject = JSONObject("""{"empty": "empty"}""")
@@ -21,8 +21,8 @@ class GameActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-        val fileName = intent.getStringExtra(FILE_NAME)
-        currentFile = fileName
+        val fileName = intent.getStringExtra(SUB_CATEGORY_NAME)
+        currentSubCategory = fileName
 
         last_button.setOnClickListener {}
         next_button.setOnClickListener {nextQuestion()}
@@ -34,7 +34,7 @@ class GameActivity: AppCompatActivity() {
     private fun nextQuestion() {
         val jsonString = parseJSON("data.json")
         if ( currentQuestion.isEmpty()) {
-            val category = getQuestions(jsonString, currentFile.toString(), "cell_to_organ")
+            val category = getQuestions(jsonString, currentSubCategory.toString(), currentCategory.toString())
             chooseQuestionAndSolution(category)
         }
         else {

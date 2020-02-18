@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.GridView
 import androidx.appcompat.app.AppCompatActivity
+import org.json.JSONObject
+import java.io.InputStream
 
-var currentSubCategory: String? = ""
-const val  FILE_NAME = "com.example.mappapp.FILE_NAME"
+var currentCategory: String? = ""
+const val  SUB_CATEGORY_NAME = "com.example.mappapp.SUB_CATEGORY_NAME"
 
 class FileActivity: AppCompatActivity() {
 
@@ -16,21 +18,39 @@ class FileActivity: AppCompatActivity() {
         setContentView(R.layout.activity_file)
 
         val categoryName = intent.getStringExtra(CATEGORY_NAME)
-        currentSubCategory = categoryName
+        currentCategory = categoryName
 
+        val json = parseJSON("data.json")
         val gridView: GridView = findViewById(R.id.file_gridview)
-        val files = arrayOf("Cytologie", "Enzymatik", "Immunbiologie")
-        gridView.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, files)
+        val rawJSOn = json.getJSONObject("data")
+        val jsonSubCategory = rawJSOn.getJSONObject(currentCategory.toString())
+        val subCategories = jsonSubCategory.keys()
+        var subCategoriesArray: ArrayList<String> = ArrayList()
+        subCategories.forEach { subCategoriesArray.add(it) }
+
+        gridView.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, subCategoriesArray)
+        setAllItems(jsonSubCategory)
 
         gridView.setOnItemClickListener { parent, view, position, id ->
-            openFile(files[position])
+            openSubCategory(subCategoriesArray[position])
         }
     }
 
-    private fun openFile(fileName: String) {
+    private fun openSubCategory(subCategoryName: String) {
        val intent = Intent(this, GameActivity::class.java).apply {
-           putExtra(FILE_NAME, fileName)
+           putExtra(SUB_CATEGORY_NAME, subCategoryName)
        }
         startActivity(intent)
+    }
+
+    private fun setAllItems(json: JSONObject) {
+
+    }
+
+    fun parseJSON(file: String): JSONObject {
+        val inputStream: InputStream = assets.open(file)
+        val json = inputStream.bufferedReader().use { it.readText() }
+        val jsonObj = JSONObject(json)
+        return jsonObj
     }
 }
