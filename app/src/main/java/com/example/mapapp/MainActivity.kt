@@ -8,9 +8,9 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
 
-val categories = GameActivity().parseJSON("data.json")
+var categories = GameActivity().parseJSON("data.json")
 
-const val  CATEGORY_NAME = "com.example.mappapp.CAT_NAME"
+const val  CATEGORY_NAME = "com.example.mappapp.CATEGORY_NAME"
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,12 +24,12 @@ class MainActivity : AppCompatActivity() {
 
         listView.setOnItemClickListener { adapterview, view, i, l ->
             Toast.makeText(applicationContext, subjects[i], Toast.LENGTH_SHORT).show()
-            openSubCategories(subjects[i])
+            showFiles(subjects[i])
         }
     }
 
-    private fun openSubCategories(category: String) {
-        val intent = Intent(this, GameActivity::class.java).apply {
+    private fun showFiles(category: String) {
+        val intent = Intent(this, FileActivity::class.java).apply {
             putExtra(CATEGORY_NAME, category)
         }
         startActivity(intent)

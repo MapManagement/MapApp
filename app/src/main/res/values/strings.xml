@@ -12,4 +12,7 @@
     
     <array name="MainListItems">
     </array>
+
+    <array name="FileGridItems">
+    </array>
 </resources>
