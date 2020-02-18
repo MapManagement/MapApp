@@ -1,5 +1,8 @@
 <resources>
+    <!--general Information-->
     <string name="app_name">MapApp</string>
+
+    <!--GameActivity-->
     <string name="last">Last</string>
     <string name="next">Next</string>
     <string name="title">Choose your file and start the game!</string>
@@ -9,10 +12,15 @@
     <string name="leave">Leave game!</string>
     <string name="toFirstQuestion">Press "NEXT" for the first question!</string>
     <string name="endOfCategory">You answered all questions of this category!\n Restart or choose an new file.</string>
-    
+
+    <!--MainActivity-->
     <array name="MainListItems">
     </array>
 
+    <!--FileActivity-->
     <array name="FileGridItems">
     </array>
+
+    <!--EditorActivity-->
+    <string name="editorTitle">Name of the new file:</string>
 </resources>
