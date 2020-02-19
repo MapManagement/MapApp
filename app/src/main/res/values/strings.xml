@@ -23,4 +23,8 @@
 
     <!--EditorActivity-->
     <string name="editorTitle">Name of the new file:</string>
+    <string name="editorQuestionName">Question:</string>
+    <string name="editorAnswerName">Answer:</string>
+    <string name="editorAddtButton">Add</string>
+    <string name="editorSubmittButton">Submit file!</string>
 </resources>
