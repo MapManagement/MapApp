@@ -5,9 +5,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.GridView
 import android.widget.ListView
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 import java.io.InputStream
 
@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         val json = parseJSON("data.json")
         val rawJSOn = json.getJSONObject("data")
@@ -33,12 +34,19 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, categoriesArray[i], Toast.LENGTH_SHORT).show()
             showSubCategories(categoriesArray[i])
         }
+
+        main_floating_point.setOnClickListener {openFileActivity()}
     }
 
     private fun showSubCategories(category: String) {
         val intent = Intent(this, FileActivity::class.java).apply {
             putExtra(CATEGORY_NAME, category)
         }
+        startActivity(intent)
+    }
+
+    private fun openFileActivity() {
+        val intent = Intent(this, EditorActivity::class.java)
         startActivity(intent)
     }
 
