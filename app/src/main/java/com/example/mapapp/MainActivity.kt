@@ -1,12 +1,12 @@
 package com.example.mapapp
 
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_file.*
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 import java.io.InputStream
