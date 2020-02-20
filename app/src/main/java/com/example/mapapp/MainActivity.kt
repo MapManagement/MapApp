@@ -34,19 +34,12 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, categoriesArray[i], Toast.LENGTH_SHORT).show()
             showSubCategories(categoriesArray[i])
         }
-
-        main_floating_point.setOnClickListener {openFileActivity()}
     }
 
     private fun showSubCategories(category: String) {
         val intent = Intent(this, FileActivity::class.java).apply {
             putExtra(CATEGORY_NAME, category)
         }
-        startActivity(intent)
-    }
-
-    private fun openFileActivity() {
-        val intent = Intent(this, EditorActivity::class.java)
         startActivity(intent)
     }
 

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.GridView
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_file.*
 import org.json.JSONObject
 import java.io.InputStream
 
@@ -33,6 +34,8 @@ class FileActivity: AppCompatActivity() {
         gridView.setOnItemClickListener { parent, view, position, id ->
             openSubCategory(subCategoriesArray[position])
         }
+
+        editor_floating_point.setOnClickListener {openFileActivity()}
     }
 
     private fun openSubCategory(subCategoryName: String) {
@@ -44,6 +47,11 @@ class FileActivity: AppCompatActivity() {
         currentQuestion = ""
         currentSubCategory = ""
         availableQuestions = JSONObject("""{"empty": "empty"}""")
+        startActivity(intent)
+    }
+
+    private fun openFileActivity() {
+        val intent = Intent(this, EditorActivity::class.java)
         startActivity(intent)
     }
 

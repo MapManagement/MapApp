@@ -9,6 +9,7 @@ import android.widget.ExpandableListView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import kotlinx.android.synthetic.main.activity_editor.*
+import kotlinx.android.synthetic.main.activity_file.*
 
 
 class EditorActivity: AppCompatActivity() {
