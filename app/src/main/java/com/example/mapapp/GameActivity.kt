@@ -20,6 +20,7 @@ class GameActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
+        //creating listeners
         last_button.setOnClickListener {}
         next_button.setOnClickListener {nextQuestion()}
         solution_button.setOnClickListener {showSolution()}
@@ -27,6 +28,7 @@ class GameActivity: AppCompatActivity() {
         leave_button.setOnClickListener{}
     }
 
+    //decides whether a new game was started
     private fun nextQuestion() {
         if (currentQuestion.isEmpty()) {
             chooseQuestionAndSolution(currentJSONEntries)
@@ -38,6 +40,7 @@ class GameActivity: AppCompatActivity() {
         mytext.text = currentQuestion
     }
 
+    //changes text of text view when solution button is pressed
     private fun showSolution() {
         if (currentSolution.isNotEmpty()) {
             mytext.text = currentSolution
@@ -45,6 +48,7 @@ class GameActivity: AppCompatActivity() {
         }
     }
 
+    //chooses question/answer of still available entries and stores them in public variables
     private fun chooseQuestionAndSolution(jsonQAS: JSONObject= availableQuestions) {
         val length = jsonQAS.length()
         if (length != 1) {
@@ -78,10 +82,12 @@ class GameActivity: AppCompatActivity() {
         }
     }
 
+    //pops answered question out of available ones
     private fun deleteEntries() {
         availableQuestions.remove(currentQuestion)
     }
 
+    //sets endscreen of game
     private fun endOfCategory() {
         restart_button.visibility = View.VISIBLE
         leave_button.visibility = View.VISIBLE
