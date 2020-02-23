@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import org.json.JSONObject
-import java.io.InputStream
+import java.io.File
 
 var currentJSONEntries = JSONObject()
 
@@ -14,7 +14,9 @@ class FileActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_file)
 
-        val json = parseJSON("$FILE_NAME.json")
+        val fileName = intent.getStringExtra(FILE_NAME)
+        println(fileName)
+        val json = parseJSON(fileName.toString())
         val entries = json.getJSONObject("data")
         currentJSONEntries = entries
         openFile()
@@ -32,9 +34,8 @@ class FileActivity: AppCompatActivity() {
     }
 
     fun parseJSON(file: String): JSONObject {
-        val inputStream: InputStream = assets.open(file)
-        val json = inputStream.bufferedReader().use { it.readText() }
-        val jsonObj = JSONObject(json)
+        val jsonData = File(applicationContext.filesDir, "$file.json").readText(Charsets.UTF_8)
+        val jsonObj = JSONObject(jsonData)
         return jsonObj
     }
 }
