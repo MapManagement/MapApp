@@ -6,14 +6,10 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_file.*
-import kotlinx.android.synthetic.main.activity_main.*
-import org.json.JSONObject
 import java.io.File
-import java.io.InputStream
 
 
-const val  CATEGORY_NAME = "com.example.mappapp.CATEGORY_NAME"
+const val  FILE_NAME = "com.example.mappapp.FILE_NAME"
 
 class MainActivity : AppCompatActivity() {
 
@@ -42,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun showSubCategories(category: String) {
         val intent = Intent(this, FileActivity::class.java).apply {
-            putExtra(CATEGORY_NAME, category)
+            putExtra(FILE_NAME, category)
         }
         startActivity(intent)
     }

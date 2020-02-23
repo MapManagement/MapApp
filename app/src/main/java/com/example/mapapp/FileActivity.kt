@@ -2,15 +2,11 @@ package com.example.mapapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.GridView
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_file.*
 import org.json.JSONObject
 import java.io.InputStream
 
-var currentCategory: String? = ""
-const val  SUB_CATEGORY_NAME = "com.example.mappapp.SUB_CATEGORY_NAME"
+var currentJSONEntries = JSONObject()
 
 class FileActivity: AppCompatActivity() {
 
@@ -18,40 +14,20 @@ class FileActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_file)
 
-        val categoryName = intent.getStringExtra(CATEGORY_NAME)
-        currentCategory = categoryName
-
-        val json = parseJSON("data.json")
-        val gridView: GridView = findViewById(R.id.file_gridview)
-        val rawJSOn = json.getJSONObject("data")
-        val jsonSubCategory = rawJSOn.getJSONObject(currentCategory.toString())
-        val subCategories = jsonSubCategory.keys()
-        var subCategoriesArray: ArrayList<String> = ArrayList()
-        subCategories.forEach { subCategoriesArray.add(it) }
-
-        gridView.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, subCategoriesArray)
-
-        gridView.setOnItemClickListener { parent, view, position, id ->
-            openSubCategory(subCategoriesArray[position])
-        }
-
-        editor_floating_point.setOnClickListener {openFileActivity()}
+        val json = parseJSON("$FILE_NAME.json")
+        val entries = json.getJSONObject("data")
+        currentJSONEntries = entries
+        openFile()
     }
 
-    private fun openSubCategory(subCategoryName: String) {
+    private fun openFile() {
        val intent = Intent(this, GameActivity::class.java).apply {
-           putExtra(SUB_CATEGORY_NAME, subCategoryName)
        }
 
         currentSolution = ""
         currentQuestion = ""
         currentSubCategory = ""
         availableQuestions = JSONObject("""{"empty": "empty"}""")
-        startActivity(intent)
-    }
-
-    private fun openFileActivity() {
-        val intent = Intent(this, EditorActivity::class.java)
         startActivity(intent)
     }
 

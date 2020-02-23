@@ -20,9 +20,6 @@ class GameActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-        val fileName = intent.getStringExtra(SUB_CATEGORY_NAME)
-        currentSubCategory = fileName
-
         last_button.setOnClickListener {}
         next_button.setOnClickListener {nextQuestion()}
         solution_button.setOnClickListener {showSolution()}
@@ -31,10 +28,8 @@ class GameActivity: AppCompatActivity() {
     }
 
     private fun nextQuestion() {
-        val jsonString = parseJSON("data.json")
-        if ( currentQuestion.isEmpty()) {
-            val category = getQuestions(jsonString, currentSubCategory.toString(), currentCategory.toString())
-            chooseQuestionAndSolution(category)
+        if (currentQuestion.isEmpty()) {
+            chooseQuestionAndSolution(currentJSONEntries)
         }
         else {
             chooseQuestionAndSolution()
@@ -48,20 +43,6 @@ class GameActivity: AppCompatActivity() {
             mytext.text = currentSolution
             deleteEntries()
         }
-    }
-
-    fun parseJSON(file: String): JSONObject {
-        val inputStream: InputStream = assets.open(file)
-        val json = inputStream.bufferedReader().use { it.readText() }
-        val jsonObj = JSONObject(json)
-        return jsonObj
-    }
-
-    private fun getQuestions(json: JSONObject, category: String, subject: String): JSONObject {
-        val jsonData = json.getJSONObject("data")
-        val jsonSubject = jsonData.getJSONObject(subject)
-        val jsonCategory = jsonSubject.getJSONObject(category)
-        return jsonCategory
     }
 
     private fun chooseQuestionAndSolution(jsonQAS: JSONObject= availableQuestions) {
