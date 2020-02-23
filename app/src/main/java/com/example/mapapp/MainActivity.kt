@@ -9,6 +9,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_file.*
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
+import java.io.File
 import java.io.InputStream
 
 
@@ -20,12 +21,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val categoriesArray: ArrayList<String> = ArrayList()
+        val trimmer = arrayListOf(".json", "/")
+        val jsonDirectory = applicationContext.filesDir.toString()
 
-        val json = parseJSON("data.json")
-        val rawJSOn = json.getJSONObject("data")
-        val categories = rawJSOn.keys()
-        var categoriesArray: ArrayList<String> = ArrayList()
-        categories.forEach { categoriesArray.add(it) }
+        File(applicationContext.filesDir.toString()).walk().forEach {
+            println(it)
+            if (it.toString() != jsonDirectory)
+            categoriesArray.add(it.toString().split(trimmer[0], trimmer[1])[6])
+        }
 
         val listView: ListView = findViewById(R.id.main_listview)
         listView.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, categoriesArray)
@@ -41,12 +45,5 @@ class MainActivity : AppCompatActivity() {
             putExtra(CATEGORY_NAME, category)
         }
         startActivity(intent)
-    }
-
-    fun parseJSON(file: String): JSONObject {
-        val inputStream: InputStream = assets.open(file)
-        val json = inputStream.bufferedReader().use { it.readText() }
-        val jsonObj = JSONObject(json)
-        return jsonObj
     }
 }
