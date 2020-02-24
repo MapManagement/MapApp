@@ -16,10 +16,8 @@ class FileActivity: AppCompatActivity() {
         setContentView(R.layout.activity_file)
 
         //storing json file data in different variables
-        val fileName = intent.getStringExtra(FILE_NAME)
-        val json = parseJSON(fileName.toString())
-        val entries = json.getJSONObject("data")
-        currentJSONEntries = entries
+        val json = parseJSON(chosenFile.toString())
+        currentJSONEntries = json
 
         //starts game
         openFile()
@@ -31,7 +29,6 @@ class FileActivity: AppCompatActivity() {
         //clearing data of previous played file
         currentSolution = ""
         currentQuestion = ""
-        currentSubCategory = ""
         availableQuestions = JSONObject("""{"empty": "empty"}""")
         startActivity(intent)
     }

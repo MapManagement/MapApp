@@ -9,7 +9,6 @@ import kotlinx.android.synthetic.main.activity_game.*
 import org.json.JSONException
 import java.io.InputStream
 
-var currentSubCategory: String? = ""
 var currentSolution: String = ""
 var currentQuestion: String = ""
 var availableQuestions: JSONObject = JSONObject("""{"empty": "empty"}""")

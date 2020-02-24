@@ -10,7 +10,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.io.File
 
 //global varibale for getting chosen file name
-const val  FILE_NAME = "com.example.mappapp.FILE_NAME"
+var chosenFile: String = ""
 
 class MainActivity : AppCompatActivity() {
 
@@ -47,8 +47,8 @@ class MainActivity : AppCompatActivity() {
 
     //starts FileActivity for parsing json data
     private fun startFileActivity(category: String) {
+        chosenFile = category
         val intent = Intent(this, FileActivity::class.java).apply {
-            putExtra(FILE_NAME, category)
         }
         startActivity(intent)
     }
