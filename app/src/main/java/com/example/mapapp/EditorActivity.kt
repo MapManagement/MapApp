@@ -6,19 +6,19 @@ import android.widget.*
 import kotlinx.android.synthetic.main.activity_editor.*
 import org.json.JSONObject
 import java.io.File
-import java.io.FileWriter
 import java.io.InputStream
-import java.lang.Exception
+import java.util.*
 
 
 class EditorActivity: AppCompatActivity() {
 
-    val fileMap: MutableMap<String, String> = mutableMapOf()
+    private val fileMap: MutableMap<String, String> = mutableMapOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-                setContentView(R.layout.activity_editor)
+        setContentView(R.layout.activity_editor)
 
+        //all items used in EditorActivity
         val questionInput: EditText = findViewById(R.id.setQuestionName)
         val answerInput: EditText = findViewById(R.id.setAnswerName)
         val titleInput: EditText = findViewById(R.id.setFileTitle)
@@ -31,24 +31,27 @@ class EditorActivity: AppCompatActivity() {
             saveInput(questionInput.text.toString(), answerInput.text.toString())
             emptyInputs(questionInput, answerInput)
             val valueString: String = showAddedValue(fileMap)
-            valueDisplay.text = valueString}
+            valueDisplay.text = valueString
+        }
 
         submitButton.setOnClickListener {
-            val fullJSONFile =  parseJSON("data.json")
-            createJSONFile(fullJSONFile, setFileTitle.text.toString())}
+            createJSONFile(titleInput.text.toString())}
     }
 
+    //stores question and answer in MutableMap, disables EditText of file title
     private fun saveInput(question: String, answer: String) {
         fileMap[question] = answer
         setFileTitle.isEnabled = false
     }
 
+    //clears EditTexts
     private fun emptyInputs(vararg inputs: EditText) {
         for (input in inputs) {
             input.setText("")
         }
     }
 
+    //shows already added values in TextView
     private fun showAddedValue(mapEntries: Map<String, String>): String {
         var text = ""
         mapEntries.forEach { (t, u) ->
@@ -58,24 +61,37 @@ class EditorActivity: AppCompatActivity() {
         return text
     }
 
-    private fun createJSONFile(jsonCategory: JSONObject, fileName: String) {
-        File(applicationContext.filesDir, "$fileName.json").writeText(createFileEntries().toString())
-        val newFile = File(applicationContext.filesDir, "$fileName.json").readText(Charsets.UTF_8)
-        println(newFile)
+    //creates new json file with value of MutableMap
+    private fun createJSONFile(fileName: String) {
+        val trimmer = arrayListOf(".json", "/")
+        var fileExists = false
+
+        //checks if json file already exists
+        File(applicationContext.filesDir.toString()).walk().forEach {
+            val splittedFilePaths = it.toString().split(trimmer[0], trimmer[1])
+            splittedFilePaths.forEach {
+                if (it.toLowerCase(Locale.GERMANY) == fileName.toLowerCase(Locale.GERMANY)) {
+                    Toast.makeText(this, "File already exists!", Toast.LENGTH_SHORT).show()
+                    fileExists = true
+
+                }
+                else{
+                    fileExists = false
+                }
+            }
+        }
+        //creates file, if file not already found
+        if(!(fileExists)) {
+            File(applicationContext.filesDir, "$fileName.json").writeText(createFileEntries().toString())
+        }
     }
 
+    //turns MutableMap into JSONObject
     private fun createFileEntries(): JSONObject {
         val createdJSONObject = JSONObject()
         fileMap.forEach { (t, u) ->
             createdJSONObject.put(t, u)
         }
         return createdJSONObject
-    }
-
-    fun parseJSON(file: String): JSONObject {
-        val inputStream: InputStream = assets.open(file)
-        val json = inputStream.bufferedReader().use { it.readText() }
-        val jsonObj = JSONObject(json)
-        return jsonObj
     }
 }

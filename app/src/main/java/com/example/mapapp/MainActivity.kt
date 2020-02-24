@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.io.File
 
 //global varibale for getting chosen file name
@@ -21,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         val categoriesArray: ArrayList<String> = ArrayList()
         val trimmer = arrayListOf(".json", "/")
         val jsonDirectory = applicationContext.filesDir.toString()
+
+        val FAB: FloatingActionButton = findViewById(R.id.floating_point)
 
         //using all stored json files for ListView items
         File(applicationContext.filesDir.toString()).walk().forEach {
@@ -38,6 +41,8 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, categoriesArray[i], Toast.LENGTH_SHORT).show()
             startFileActivity(categoriesArray[i])
         }
+
+        FAB.setOnClickListener {startEditorActivity()}
     }
 
     //starts FileActivity for parsing json data
@@ -45,6 +50,11 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, FileActivity::class.java).apply {
             putExtra(FILE_NAME, category)
         }
+        startActivity(intent)
+    }
+
+    private fun startEditorActivity() {
+        val intent = Intent(this, EditorActivity::class.java)
         startActivity(intent)
     }
 }
