@@ -7,8 +7,10 @@ import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_game.*
 import org.json.JSONException
+import java.io.File
 import java.io.InputStream
 
+var currentJSONEntries = JSONObject()
 var currentSolution: String = ""
 var currentQuestion: String = ""
 var availableQuestions: JSONObject = JSONObject("""{"empty": "empty"}""")
@@ -18,6 +20,10 @@ class GameActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+
+        //storing json file data in different variables
+        val json = parseJSON(chosenFile)
+        currentJSONEntries = json
 
         //creating listeners
         last_button.setOnClickListener {}
@@ -92,6 +98,13 @@ class GameActivity: AppCompatActivity() {
         leave_button.visibility = View.VISIBLE
         currentQuestion = getString(R.string.endOfCategory)
         currentSolution = getString(R.string.endOfCategory)
+    }
+
+    //creates json object of file text
+    fun parseJSON(file: String): JSONObject {
+        val jsonData = File(applicationContext.filesDir, "$file.json").readText(Charsets.UTF_8)
+        val jsonObj = JSONObject(jsonData)
+        return jsonObj
     }
 
 }

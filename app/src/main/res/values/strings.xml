@@ -18,7 +18,9 @@
     </array>
 
     <!--FileActivity-->
-    <array name="FileGridItems">
+    <string name="startGame">Start</string>
+    <string name="editFile">Edit</string>
+    <array name="fileListView">
     </array>
 
     <!--EditorActivity-->

@@ -2,12 +2,16 @@ package com.example.mapapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.ListView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import org.json.JSONObject
 import java.io.File
 
+
 //json entries of chosen file
-var currentJSONEntries = JSONObject()
 
 class FileActivity: AppCompatActivity() {
 
@@ -15,12 +19,26 @@ class FileActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_file)
 
-        //storing json file data in different variables
-        val json = parseJSON(chosenFile.toString())
-        currentJSONEntries = json
+        //array containing all information about chosenFile
+        val file = File(applicationContext.filesDir, "$chosenFile.json")
+        val fileInformationArray =
+            arrayListOf("Bytes: " + file.length().toString(), "Path: " + file.path,"Extension: " + file.extension)
 
-        //starts game
-        openFile()
+        //declare variables for elements in xml file
+        val fileNameTextView: TextView = findViewById(R.id.filename_textview)
+        val startButton: Button = findViewById(R.id.start_game_button)
+        val fileInformationListView: ListView = findViewById(R.id.file_information_listview)
+
+        //creating ListView
+        fileInformationListView.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, fileInformationArray)
+
+        //listeners
+        startButton.setOnClickListener { openFile() }
+
+
+        //set textview text
+        fileNameTextView.text = chosenFile
+
     }
 
     private fun openFile() {
@@ -31,12 +49,5 @@ class FileActivity: AppCompatActivity() {
         currentQuestion = ""
         availableQuestions = JSONObject("""{"empty": "empty"}""")
         startActivity(intent)
-    }
-
-    //creates json object of file text
-    fun parseJSON(file: String): JSONObject {
-        val jsonData = File(applicationContext.filesDir, "$file.json").readText(Charsets.UTF_8)
-        val jsonObj = JSONObject(jsonData)
-        return jsonObj
     }
 }
