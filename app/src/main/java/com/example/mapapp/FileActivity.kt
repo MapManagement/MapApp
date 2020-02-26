@@ -11,8 +11,6 @@ import org.json.JSONObject
 import java.io.File
 
 
-//json entries of chosen file
-
 class FileActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +25,7 @@ class FileActivity: AppCompatActivity() {
         //declare variables for elements in xml file
         val fileNameTextView: TextView = findViewById(R.id.filename_textview)
         val startButton: Button = findViewById(R.id.start_game_button)
+        val editButton: Button = findViewById(R.id.edit_file_button)
         val fileInformationListView: ListView = findViewById(R.id.file_information_listview)
 
         //creating ListView
@@ -34,6 +33,7 @@ class FileActivity: AppCompatActivity() {
 
         //listeners
         startButton.setOnClickListener { openFile() }
+        editButton.setOnClickListener { editFile() }
 
 
         //set textview text
@@ -48,6 +48,11 @@ class FileActivity: AppCompatActivity() {
         currentSolution = ""
         currentQuestion = ""
         availableQuestions = JSONObject("""{"empty": "empty"}""")
+        startActivity(intent)
+    }
+
+    private fun editFile() {
+        val intent = Intent(this, FileEditorActivity::class.java)
         startActivity(intent)
     }
 }
