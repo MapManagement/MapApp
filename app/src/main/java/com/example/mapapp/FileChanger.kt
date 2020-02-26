@@ -1,5 +1,6 @@
 package com.example.mapapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -7,6 +8,8 @@ import android.widget.ListView
 import android.widget.TextView
 import org.json.JSONObject
 import java.io.File
+
+var chosenEntryKey = ""
 
 
 class FileEditorActivity: AppCompatActivity() {
@@ -19,7 +22,7 @@ class FileEditorActivity: AppCompatActivity() {
         val fileNameTextView: TextView = findViewById(R.id.file_editor_filename)
         val listView: ListView = findViewById(R.id.file_editor_listview)
 
-        val questionIterator = parseJSON("$chosenFile.json").keys()
+        val questionIterator = parseJSON(chosenFile).keys()
         val questionArray = ArrayList<String>()
 
         questionIterator.forEach {
@@ -32,13 +35,16 @@ class FileEditorActivity: AppCompatActivity() {
         //creating listview items
         listView.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, questionArray)
         listView.setOnItemClickListener { adapterview, view, i, l ->
+            openEntry(questionArray[i])
 
         }
 
     }
 
     fun openEntry(entryKey: String) {
-        //work in progress
+        chosenEntryKey = entryKey
+        val intent = Intent(this, EntryEditorActivity::class.java)
+        startActivity(intent)
     }
 
     fun parseJSON(file: String): JSONObject {

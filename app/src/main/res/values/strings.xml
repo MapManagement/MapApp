@@ -29,4 +29,7 @@
     <string name="editorAnswerName">Answer:</string>
     <string name="editorAddButton">Add →</string>
     <string name="editorSubmittButton">Submit file!</string>
+
+    <!--EntryEditorActivity-->
+    <string name="entryEditButton">Save changes</string>
 </resources>
