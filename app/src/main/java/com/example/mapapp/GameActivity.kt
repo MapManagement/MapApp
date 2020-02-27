@@ -25,6 +25,7 @@ class GameActivity: AppCompatActivity() {
         //storing json file data in different variables
         val json = parseJSON(chosenFile)
         currentJSONEntries = json
+        println(currentJSONEntries)
 
         //creating listeners
         last_button.setOnClickListener {}
@@ -56,9 +57,10 @@ class GameActivity: AppCompatActivity() {
 
     //chooses question/answer of still available entries and stores them in public variables
     private fun chooseQuestionAndSolution(jsonQAS: JSONObject= availableQuestions) {
+        println("Next Button $jsonQAS")
         val length = jsonQAS.length()
-        if (length != 1) {
-            val randInt = (0 until length - 1).random()
+        if (length != 0) {
+            val randInt = (0 until length).random()
             val questions = jsonQAS.keys()
             var chosenQuestion = "Error"
             var i = 0
@@ -97,6 +99,7 @@ class GameActivity: AppCompatActivity() {
     private fun endOfCategory() {
         restart_button.visibility = View.VISIBLE
         leave_button.visibility = View.VISIBLE
+        println(availableQuestions)
         currentQuestion = getString(R.string.endOfCategory)
         currentSolution = getString(R.string.endOfCategory)
     }

@@ -36,7 +36,6 @@ class EntryEditorActivity: AppCompatActivity() {
         val jsonObj= parseJSON(chosenFile)
         jsonObj.remove(chosenEntryKey)
         jsonObj.put(newQuestion, newAnswer)
-        println(jsonObj)
         val file: File = File(applicationContext.filesDir, "$chosenFile.json")
         file.writeText(jsonObj.toString())
         val intent = Intent(this, FileEditorActivity::class.java)
