@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONObject
 import java.io.File
 
@@ -21,6 +22,7 @@ class FileEditorActivity: AppCompatActivity() {
         //elements of xml file
         val fileNameTextView: TextView = findViewById(R.id.file_editor_filename)
         val listView: ListView = findViewById(R.id.file_editor_listview)
+        val FAB: FloatingActionButton = findViewById(R.id.editor_floating_point)
 
         val questionIterator = parseJSON(chosenFile).keys()
         val questionArray = ArrayList<String>()
@@ -36,8 +38,9 @@ class FileEditorActivity: AppCompatActivity() {
         listView.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, questionArray)
         listView.setOnItemClickListener { adapterview, view, i, l ->
             openEntry(questionArray[i])
-
         }
+
+        FAB.setOnClickListener { openEntry("newEntryKey") }
 
     }
 

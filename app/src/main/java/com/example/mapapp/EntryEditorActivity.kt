@@ -7,8 +7,10 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import org.json.JSONObject
 import java.io.File
+import java.lang.Exception
 
 
 class EntryEditorActivity: AppCompatActivity() {
@@ -23,19 +25,32 @@ class EntryEditorActivity: AppCompatActivity() {
         val answerEdit: EditText = findViewById(R.id.entry_answer_edittext)
         val changeButton: Button = findViewById(R.id.entry_save_changes_button)
 
+        val newQuestion = "New Question"
+        val newAnswer = "New Answer"
+
         //sets entry name and question/answer
         entryName.text = chosenFile
-        questionEdit.setText(chosenEntryKey)
-        answerEdit.setText(parseJSON(chosenFile).getString(chosenEntryKey).toString())
-
-        //save changes to file (listener)
-        changeButton.setOnClickListener { saveChangesToFile(questionEdit.text.toString(), answerEdit.text.toString()) }
+        if (chosenEntryKey != "newEntryKey") {
+            questionEdit.setText(chosenEntryKey)
+            answerEdit.setText(parseJSON(chosenFile).getString(chosenEntryKey).toString())
+        }
+        else {
+            questionEdit.setText(newQuestion)
+            answerEdit.setText(newAnswer)
+        }
+            //save changes to file (listener)
+            changeButton.setOnClickListener { saveChangesToFile(questionEdit.text.toString(), answerEdit.text.toString()) }
     }
 
     fun saveChangesToFile(newQuestion: String, newAnswer: String) {
         val jsonObj= parseJSON(chosenFile)
-        jsonObj.remove(chosenEntryKey)
-        jsonObj.put(newQuestion, newAnswer)
+        if (newQuestion != "New Question") {
+            jsonObj.remove(chosenEntryKey)
+        }
+        try {
+            jsonObj.put(newQuestion, newAnswer)
+        }
+        catch (e: Exception) {Toast.makeText(this, "Entry already exists!", Toast.LENGTH_SHORT).show()}
         val file: File = File(applicationContext.filesDir, "$chosenFile.json")
         file.writeText(jsonObj.toString())
         val intent = Intent(this, FileEditorActivity::class.java)
