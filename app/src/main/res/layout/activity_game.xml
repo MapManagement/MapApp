@@ -25,6 +25,7 @@
             android:text="@string/last"
             android:layout_width="60dp"
             android:layout_height="0dp"
+            android:background="@color/colorPrimary"
 
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -36,6 +37,7 @@
             android:text="@string/next"
             android:layout_width="60dp"
             android:layout_height="0dp"
+            android:background="@color/colorPrimary"
 
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -47,6 +49,8 @@
             android:text="@string/solution"
             android:layout_width="0dp"
             android:layout_height="75dp"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/white"
 
             app:layout_constraintBottom_toBottomOf="@id/last_button"
             app:layout_constraintStart_toEndOf="@id/last_button"
@@ -58,6 +62,8 @@
             android:layout_height="75dp"
             android:layout_width="0dp"
             android:visibility="gone"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/white"
 
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@+id/last_button"
@@ -69,6 +75,8 @@
             android:layout_width="0dp"
             android:layout_height="75dp"
             android:visibility="gone"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/white"
 
             app:layout_constraintBottom_toBottomOf="@id/last_button"
             app:layout_constraintStart_toEndOf="@id/last_button"
