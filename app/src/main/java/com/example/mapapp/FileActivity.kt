@@ -2,10 +2,7 @@ package com.example.mapapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import org.json.JSONObject
 import java.io.File
@@ -53,6 +50,11 @@ class FileActivity: AppCompatActivity() {
 
     private fun editFile() {
         val intent = Intent(this, FileEditorActivity::class.java)
+        startActivity(intent)
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
 }

@@ -1,5 +1,6 @@
 package com.example.mapapp
 
+import android.content.Intent
 import org.json.JSONObject
 
 import androidx.appcompat.app.AppCompatActivity
@@ -105,6 +106,11 @@ class GameActivity: AppCompatActivity() {
         val jsonData = File(applicationContext.filesDir, "$file.json").readText(Charsets.UTF_8)
         val jsonObj = JSONObject(jsonData)
         return jsonObj
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, FileActivity::class.java)
+        startActivity(intent)
     }
 
 }

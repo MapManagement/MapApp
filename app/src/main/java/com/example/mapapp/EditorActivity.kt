@@ -1,5 +1,6 @@
 package com.example.mapapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
@@ -84,6 +85,8 @@ class EditorActivity: AppCompatActivity() {
         if(!(fileExists)) {
             File(applicationContext.filesDir, "$fileName.json").writeText(createFileEntries().toString())
         }
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 
     //turns MutableMap into JSONObject

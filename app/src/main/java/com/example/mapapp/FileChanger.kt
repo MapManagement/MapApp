@@ -52,4 +52,9 @@ class FileEditorActivity: AppCompatActivity() {
         val jsonObj = JSONObject(jsonData)
         return jsonObj
     }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, FileActivity::class.java)
+        startActivity(intent)
+    }
 }
