@@ -5,18 +5,32 @@ import org.json.JSONObject
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.GestureDetector
+import android.view.MotionEvent
 import android.view.View
+import android.view.animation.AnimationUtils
+import androidx.core.view.MotionEventCompat
 import kotlinx.android.synthetic.main.activity_game.*
 import org.json.JSONException
 import java.io.File
 import java.io.InputStream
+import kotlin.math.abs
 
 var currentJSONEntries = JSONObject()
 var currentSolution: String = ""
 var currentQuestion: String = ""
 var availableQuestions: JSONObject = JSONObject("""{"empty": "empty"}""")
 
-class GameActivity: AppCompatActivity() {
+class GameActivity: AppCompatActivity(), GestureDetector.OnGestureListener {
+
+    lateinit var gestureListener: GestureDetector
+    var x_start: Float = 0.0f
+    var x_end: Float = 0.0f
+
+    companion object{
+        const val MIN_DISTANCE = 200
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,11 +41,39 @@ class GameActivity: AppCompatActivity() {
         currentJSONEntries = json
 
         //creating listeners
-        last_button.setOnClickListener {}
-        next_button.setOnClickListener {nextQuestion()}
+        gestureListener = GestureDetector(this, this)
         solution_button.setOnClickListener {showSolution()}
         restart_button.setOnClickListener{}
         leave_button.setOnClickListener{}
+    }
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        gestureListener.onTouchEvent(event)
+
+        when (event?.action) {
+            0 ->
+            {
+                x_start = event.x
+            }
+            1 ->
+            {
+                x_end = event.x
+                val distanceFloat: Float = x_end- x_start
+                if (abs(distanceFloat) > MIN_DISTANCE) {
+                    if (x_end > x_start){
+                        println("Right")
+                    }
+                    else {
+                        val animation = AnimationUtils.loadAnimation(this, R.anim.fade_out)
+                        mytext.startAnimation(animation)
+                        nextQuestion()
+                    }
+
+                }
+            }
+
+        }
+        return super.onTouchEvent(event)
     }
 
     //decides whether a new game was started
@@ -112,6 +154,34 @@ class GameActivity: AppCompatActivity() {
     override fun onBackPressed() {
         val intent = Intent(this, FileActivity::class.java)
         startActivity(intent)
+    }
+
+    override fun onShowPress(e: MotionEvent?) {
+        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onSingleTapUp(e: MotionEvent?): Boolean {
+        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return false
+    }
+
+    override fun onDown(e: MotionEvent?): Boolean {
+        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return false
+    }
+
+    override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
+        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return false
+    }
+
+    override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
+        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return false
+    }
+
+    override fun onLongPress(e: MotionEvent?) {
+        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 }

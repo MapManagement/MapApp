@@ -5,7 +5,7 @@
     <!--GameActivity-->
     <string name="last">Last</string>
     <string name="next">Next</string>
-    <string name="title">Choose your file and start the game!</string>
+    <string name="title">Start the game by swiping to the left!</string>
     <string name="start">Start!</string>
     <string name="solution">Solution</string>
     <string name="restart">Restart</string>

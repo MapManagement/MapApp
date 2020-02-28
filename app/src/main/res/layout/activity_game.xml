@@ -13,35 +13,14 @@
             android:layout_height="0dp"
             android:text="@string/title"
             android:gravity="center"
+            android:textSize="20sp"
 
             app:layout_constraintBottom_toBottomOf="@id/solution_button"
-            app:layout_constraintStart_toEndOf="@id/last_button"
-            app:layout_constraintEnd_toStartOf="@id/next_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/restart_button"/>
 
-    <Button
-            android:id="@+id/last_button"
-            android:theme="@style/AppTheme"
-            android:text="@string/last"
-            android:layout_width="60dp"
-            android:layout_height="0dp"
-            android:background="@color/colorPrimary"
 
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-    <Button
-            android:id="@+id/next_button"
-            android:theme="@style/AppTheme"
-            android:text="@string/next"
-            android:layout_width="60dp"
-            android:layout_height="0dp"
-            android:background="@color/colorPrimary"
-
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
             android:id="@+id/solution_button"
@@ -49,12 +28,12 @@
             android:text="@string/solution"
             android:layout_width="0dp"
             android:layout_height="75dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:textColor="@color/white"
 
-            app:layout_constraintBottom_toBottomOf="@id/last_button"
-            app:layout_constraintStart_toEndOf="@id/last_button"
-            app:layout_constraintEnd_toStartOf="@id/next_button"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
             android:id="@+id/restart_button"
@@ -66,8 +45,8 @@
             android:textColor="@color/white"
 
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/last_button"
-            app:layout_constraintEnd_toStartOf="@+id/next_button"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
             android:id="@+id/leave_button"
@@ -78,9 +57,9 @@
             android:background="@color/colorPrimaryDark"
             android:textColor="@color/white"
 
-            app:layout_constraintBottom_toBottomOf="@id/last_button"
-            app:layout_constraintStart_toEndOf="@id/last_button"
-            app:layout_constraintEnd_toStartOf="@id/next_button"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
     
 
 </androidx.constraintlayout.widget.ConstraintLayout>
