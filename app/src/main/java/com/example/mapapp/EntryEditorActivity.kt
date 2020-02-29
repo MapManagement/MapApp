@@ -44,8 +44,12 @@ class EntryEditorActivity: AppCompatActivity() {
 
     fun saveChangesToFile(newQuestion: String, newAnswer: String) {
         val jsonObj= parseJSON(chosenFile)
-        if (newQuestion != "New Question") {
+        if (newQuestion != "New Question" && newQuestion != "") {
             jsonObj.remove(chosenEntryKey)
+        }
+        else {
+            Toast.makeText(this, "Not possible to use empty string!", Toast.LENGTH_SHORT).show()
+            return
         }
         try {
             jsonObj.put(newQuestion, newAnswer)
