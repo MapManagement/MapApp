@@ -1,6 +1,6 @@
 <resources>
     <!--general Information-->
-    <string name="app_name">MapApp</string>
+    <string name="app_name">LearningBySwiping</string>
 
     <!--GameActivity-->
     <string name="last">Last</string>
@@ -11,7 +11,7 @@
     <string name="restart">Restart</string>
     <string name="leave">Leave game!</string>
     <string name="toFirstQuestion">Press "NEXT" for the first question!</string>
-    <string name="endOfCategory">You answered all questions of this category!\n Restart or choose an new file.</string>
+    <string name="endOfCategory">You answered all questions of this file!\n Restart or choose an new file.</string>
 
     <!--MainActivity-->
     <array name="MainListItems">

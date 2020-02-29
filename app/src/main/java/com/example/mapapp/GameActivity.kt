@@ -27,6 +27,8 @@ class GameActivity: AppCompatActivity(), GestureDetector.OnGestureListener {
     lateinit var gestureListener: GestureDetector
     var x_start: Float = 0.0f
     var x_end: Float = 0.0f
+    var y_start: Float = 0.0f
+    var y_end: Float = 0.0f
 
     companion object{
         const val MIN_DISTANCE = 200
@@ -42,7 +44,6 @@ class GameActivity: AppCompatActivity(), GestureDetector.OnGestureListener {
 
         //creating listeners
         gestureListener = GestureDetector(this, this)
-        solution_button.setOnClickListener {showSolution()}
         restart_button.setOnClickListener{}
         leave_button.setOnClickListener{}
     }
@@ -54,21 +55,28 @@ class GameActivity: AppCompatActivity(), GestureDetector.OnGestureListener {
             0 ->
             {
                 x_start = event.x
+                y_start = event.y
             }
             1 ->
             {
                 x_end = event.x
-                val distanceFloat: Float = x_end- x_start
-                if (abs(distanceFloat) > MIN_DISTANCE) {
-                    if (x_end > x_start){
-                        println("Right")
-                    }
-                    else {
+                y_end = event.y
+
+                val distanceFloatX: Float = x_end- x_start
+                val distanceFloatY: Float = y_end - y_start
+
+                if (abs(distanceFloatX) > MIN_DISTANCE) {
+                    if (x_end <= x_start){
                         val animation = AnimationUtils.loadAnimation(this, R.anim.fade_out)
                         mytext.startAnimation(animation)
                         nextQuestion()
                     }
+                }
 
+                else if (abs(distanceFloatY) > MIN_DISTANCE) {
+                    if (y_end > y_start) {
+                        showSolution()
+                    }
                 }
             }
 
@@ -139,7 +147,6 @@ class GameActivity: AppCompatActivity(), GestureDetector.OnGestureListener {
     private fun endOfCategory() {
         restart_button.visibility = View.VISIBLE
         leave_button.visibility = View.VISIBLE
-        println(availableQuestions)
         currentQuestion = getString(R.string.endOfCategory)
         currentSolution = getString(R.string.endOfCategory)
     }
