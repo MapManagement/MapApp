@@ -75,6 +75,8 @@ class GameActivity: AppCompatActivity(), GestureDetector.OnGestureListener {
 
                 else if (abs(distanceFloatY) > MIN_DISTANCE) {
                     if (y_end > y_start) {
+                        val animation = AnimationUtils.loadAnimation(this, R.anim.fade_out_from_top)
+                        mytext.startAnimation(animation)
                         showSolution()
                     }
                 }
