@@ -44,8 +44,8 @@ class GameActivity: AppCompatActivity(), GestureDetector.OnGestureListener {
 
         //creating listeners
         gestureListener = GestureDetector(this, this)
-        restart_button.setOnClickListener{}
-        leave_button.setOnClickListener{}
+        restart_button.setOnClickListener{restartGame()}
+        leave_button.setOnClickListener{leaveGame()}
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
@@ -151,6 +151,21 @@ class GameActivity: AppCompatActivity(), GestureDetector.OnGestureListener {
         leave_button.visibility = View.VISIBLE
         currentQuestion = getString(R.string.endOfCategory)
         currentSolution = getString(R.string.endOfCategory)
+    }
+
+    private fun restartGame() {
+        currentJSONEntries = JSONObject()
+        currentSolution = ""
+        currentQuestion = ""
+        availableQuestions = JSONObject("""{"empty": "empty"}""")
+
+        val intent = Intent(this, GameActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun leaveGame() {
+        val intent = Intent(this, FileActivity::class.java)
+        startActivity(intent)
     }
 
     //creates json object of file text

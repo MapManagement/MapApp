@@ -1,11 +1,11 @@
 <resources>
     <!--general Information-->
-    <string name="app_name">LearningBySwiping</string>
+    <string name="app_name">SwipeToStudy</string>
 
     <!--GameActivity-->
     <string name="last">Last</string>
     <string name="next">Next</string>
-    <string name="title">Start the game by swiping to the left!</string>
+    <string name="title">Start the game by swiping to the left!\n Swipe down to display the solution!</string>
     <string name="start">Start!</string>
     <string name="solution">Solution</string>
     <string name="restart">Restart</string>
