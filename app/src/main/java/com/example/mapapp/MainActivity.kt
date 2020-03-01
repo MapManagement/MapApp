@@ -1,5 +1,6 @@
 package com.example.mapapp
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -27,7 +28,6 @@ class MainActivity : AppCompatActivity() {
 
         //using all stored json files for ListView items
         File(applicationContext.filesDir.toString()).walk().forEach {
-            println(it)
             if (it.toString() != jsonDirectory)
             categoriesArray.add(it.toString().split(trimmer[0], trimmer[1])[6])
         }
@@ -55,6 +55,20 @@ class MainActivity : AppCompatActivity() {
 
     private fun startEditorActivity() {
         val intent = Intent(this, EditorActivity::class.java)
+        startActivityForResult(Intent.createChooser(intent, "Select a file!"), 1803)
+    }
+
+    private fun openFileManager() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.setType("*/*")
         startActivity(intent)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == 1803 && resultCode == Activity.RESULT_OK) {
+            val selectedFile = data?.data
+        }
     }
 }
