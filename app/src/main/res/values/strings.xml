@@ -32,4 +32,5 @@
 
     <!--EntryEditorActivity-->
     <string name="entryEditButton">Save changes</string>
+    <string name="deleteEntryButton">Delete Entry</string>
 </resources>

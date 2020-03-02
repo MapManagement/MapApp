@@ -21,9 +21,10 @@ class EntryEditorActivity: AppCompatActivity() {
 
         //elements in xml file
         val entryName: TextView = findViewById(R.id.entry_editor_filename)
-        val questionEdit: EditText= findViewById(R.id.entry_question_edittext)
+        val questionEdit: EditText = findViewById(R.id.entry_question_edittext)
         val answerEdit: EditText = findViewById(R.id.entry_answer_edittext)
         val changeButton: Button = findViewById(R.id.entry_save_changes_button)
+        val deleteButton: Button = findViewById(R.id.entry_delete_button)
 
         val newQuestion = "New Question"
         val newAnswer = "New Answer"
@@ -40,10 +41,13 @@ class EntryEditorActivity: AppCompatActivity() {
         }
             //save changes to file (listener)
             changeButton.setOnClickListener { saveChangesToFile(questionEdit.text.toString(), answerEdit.text.toString()) }
+
+            //deletes entry
+            deleteButton.setOnClickListener { deleteEntry() }
     }
 
     fun saveChangesToFile(newQuestion: String, newAnswer: String) {
-        val jsonObj= parseJSON(chosenFile)
+        val jsonObj = parseJSON(chosenFile)
         if (newQuestion != "New Question" && newQuestion != "") {
             jsonObj.remove(chosenEntryKey)
         }
@@ -60,6 +64,15 @@ class EntryEditorActivity: AppCompatActivity() {
         val intent = Intent(this, FileEditorActivity::class.java)
         startActivity(intent)
 
+    }
+
+    fun deleteEntry() {
+        val jsonObj = parseJSON(chosenFile)
+        jsonObj.remove(chosenEntryKey)
+        val file: File = File(applicationContext.filesDir, "$chosenFile.json")
+        file.writeText(jsonObj.toString())
+        val intent = Intent(this, FileEditorActivity::class.java)
+        startActivity(intent)
     }
 
     fun parseJSON(file: String): JSONObject {
