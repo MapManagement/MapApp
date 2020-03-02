@@ -3,12 +3,10 @@
     <string name="app_name">SwipeToStudy</string>
 
     <!--GameActivity-->
-    <string name="last">Last</string>
-    <string name="next">Next</string>
     <string name="title">Start the game by swiping to the left!\n Swipe down to display the solution!</string>
     <string name="start">Start!</string>
-    <string name="solution">Solution</string>
-    <string name="restart">Restart</string>
+    <string name="solution">Solution!</string>
+    <string name="restart">Restart!</string>
     <string name="leave">Leave game!</string>
     <string name="toFirstQuestion">Press "NEXT" for the first question!</string>
     <string name="endOfCategory">You answered all questions of this file!\n Restart or choose an new file.</string>
@@ -20,6 +18,7 @@
     <!--FileActivity-->
     <string name="startGame">Start</string>
     <string name="editFile">Edit</string>
+    <string name="deleteFileButton">Delete file!</string>
     <array name="fileListView">
     </array>
 
@@ -31,6 +30,6 @@
     <string name="editorSubmittButton">Submit file!</string>
 
     <!--EntryEditorActivity-->
-    <string name="entryEditButton">Save changes</string>
-    <string name="deleteEntryButton">Delete Entry</string>
+    <string name="entryEditButton">Save changes!</string>
+    <string name="deleteEntryButton">Delete entry!</string>
 </resources>

@@ -23,6 +23,7 @@ class FileActivity: AppCompatActivity() {
         val fileNameTextView: TextView = findViewById(R.id.filename_textview)
         val startButton: Button = findViewById(R.id.start_game_button)
         val editButton: Button = findViewById(R.id.edit_file_button)
+        val deleteButton: Button = findViewById(R.id.file_delete_button)
         val fileInformationListView: ListView = findViewById(R.id.file_information_listview)
 
         //creating ListView
@@ -31,6 +32,7 @@ class FileActivity: AppCompatActivity() {
         //listeners
         startButton.setOnClickListener { openFile() }
         editButton.setOnClickListener { editFile() }
+        deleteButton.setOnClickListener { deleteFile() }
 
 
         //set textview text
@@ -50,6 +52,13 @@ class FileActivity: AppCompatActivity() {
 
     private fun editFile() {
         val intent = Intent(this, FileEditorActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun deleteFile() {
+        val jsonFile = File(applicationContext.filesDir, "$chosenFile.json")
+        jsonFile.delete()
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
 
