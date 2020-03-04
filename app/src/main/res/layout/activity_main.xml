@@ -8,11 +8,39 @@
         tools:context=".MainActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floating_point"
+            android:id="@+id/floating_point_create"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_margin="16dp"
             android:src="@android:drawable/ic_menu_edit"
+            android:visibility="invisible"
+
+            app:maxImageSize="20dp"
+            app:backgroundTint="@color/colorAccent"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toTopOf="@id/floating_point_import"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_point_import"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_margin="16dp"
+            android:src="@android:drawable/ic_menu_upload"
+            android:visibility="invisible"
+
+            app:maxImageSize="20dp"
+            app:backgroundTint="@color/purple"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toTopOf="@id/floating_point"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_point"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_margin="16dp"
+            android:src="@android:drawable/ic_menu_add"
 
             app:maxImageSize="30dp"
             app:backgroundTint="@color/colorPrimary"

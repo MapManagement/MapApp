@@ -5,16 +5,13 @@ import org.json.JSONObject
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.AnimationUtils
-import androidx.core.view.MotionEventCompat
 import kotlinx.android.synthetic.main.activity_game.*
 import org.json.JSONException
 import java.io.File
-import java.io.InputStream
 import kotlin.math.abs
 
 var currentJSONEntries = JSONObject()

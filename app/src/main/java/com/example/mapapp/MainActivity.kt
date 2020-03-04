@@ -1,13 +1,18 @@
 package com.example.mapapp
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.activity_game.*
+import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 
 //global varibale for getting chosen file name
@@ -24,7 +29,9 @@ class MainActivity : AppCompatActivity() {
         val trimmer = arrayListOf(".json", "/")
         val jsonDirectory = applicationContext.filesDir.toString()
 
-        val FAB: FloatingActionButton = findViewById(R.id.floating_point)
+        val openFAB: FloatingActionButton = findViewById(R.id.floating_point)
+        val createFAB: FloatingActionButton = findViewById(R.id.floating_point_create)
+        val importFAB: FloatingActionButton = findViewById(R.id.floating_point_import)
 
         //using all stored json files for ListView items
         File(applicationContext.filesDir.toString()).walk().forEach {
@@ -42,10 +49,12 @@ class MainActivity : AppCompatActivity() {
             startFileActivity(categoriesArray[i])
         }
 
-        FAB.setOnClickListener {startEditorActivity()}
+        openFAB.setOnClickListener {showFABS()}
+        importFAB.setOnClickListener { openFileManager() }
+        createFAB.setOnClickListener { startEditorActivity() }
     }
 
-    //starts FileActivity for parsing json data
+    //starts FileActivity for parsing json dataü
     private fun startFileActivity(category: String) {
         chosenFile = category
         val intent = Intent(this, FileActivity::class.java).apply {
@@ -53,9 +62,21 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    @SuppressLint("RestrictedApi")
+    private fun showFABS() {
+        if(floating_point_create.visibility != View.VISIBLE) {
+            floating_point_create.visibility = View.VISIBLE
+            floating_point_import.visibility = View.VISIBLE
+        }
+        else {
+            floating_point_create.visibility = View.INVISIBLE
+            floating_point_import.visibility = View.INVISIBLE
+        }
+    }
+
     private fun startEditorActivity() {
         val intent = Intent(this, EditorActivity::class.java)
-        startActivityForResult(Intent.createChooser(intent, "Select a file!"), 1803)
+        startActivity(intent)
     }
 
     private fun openFileManager() {
