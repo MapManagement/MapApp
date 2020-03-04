@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
     private fun openFileManager() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.setType("*/*")
-        startActivity(intent)
+        startActivityForResult(Intent.createChooser(intent, "Choose your file!"), 1803)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
