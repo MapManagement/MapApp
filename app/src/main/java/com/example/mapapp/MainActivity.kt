@@ -1,9 +1,7 @@
 package com.example.mapapp
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -11,11 +9,10 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.activity_game.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 
-//global varibale for getting chosen file name
+//global variable for getting chosen file name
 var chosenFile: String = ""
 
 class MainActivity : AppCompatActivity() {
@@ -50,11 +47,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         openFAB.setOnClickListener {showFABS()}
-        importFAB.setOnClickListener { openFileManager() }
+        importFAB.setOnClickListener {  }
         createFAB.setOnClickListener { startEditorActivity() }
     }
 
-    //starts FileActivity for parsing json dataü
+    //starts FileActivity for parsing json data
     private fun startFileActivity(category: String) {
         chosenFile = category
         val intent = Intent(this, FileActivity::class.java).apply {
@@ -79,17 +76,4 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun openFileManager() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.setType("*/*")
-        startActivityForResult(Intent.createChooser(intent, "Choose your file!"), 1803)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if(requestCode == 1803 && resultCode == Activity.RESULT_OK) {
-            val selectedFile = data?.data
-        }
-    }
 }
