@@ -7,5 +7,5 @@ weird looking code and structure, first time building an app.
 - swipe gestures instead of buttons -> reached
 - creating new "learning files" inside the app -> reached
 - editing already created files -> reached
-- import and export files to share them with others
+- import and export files to share them with others -> cancelled
 - IOS support?

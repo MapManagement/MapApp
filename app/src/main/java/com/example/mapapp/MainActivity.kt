@@ -25,10 +25,11 @@ class MainActivity : AppCompatActivity() {
         val categoriesArray: ArrayList<String> = ArrayList()
         val trimmer = arrayListOf(".json", "/")
         val jsonDirectory = applicationContext.filesDir.toString()
+        println("my dir $jsonDirectory")
 
         val openFAB: FloatingActionButton = findViewById(R.id.floating_point)
         val createFAB: FloatingActionButton = findViewById(R.id.floating_point_create)
-        val importFAB: FloatingActionButton = findViewById(R.id.floating_point_import)
+        val reloadFAB: FloatingActionButton = findViewById(R.id.floating_point_reload)
 
         //using all stored json files for ListView items
         File(applicationContext.filesDir.toString()).walk().forEach {
@@ -45,9 +46,9 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, categoriesArray[i], Toast.LENGTH_SHORT).show()
             startFileActivity(categoriesArray[i])
         }
-
+        //FAB listeners
         openFAB.setOnClickListener {showFABS()}
-        importFAB.setOnClickListener {  }
+        reloadFAB.setOnClickListener { reloadActivity()}
         createFAB.setOnClickListener { startEditorActivity() }
     }
 
@@ -59,21 +60,49 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    //when clicking on root FAB new ones will open
     @SuppressLint("RestrictedApi")
     private fun showFABS() {
         if(floating_point_create.visibility != View.VISIBLE) {
             floating_point_create.visibility = View.VISIBLE
-            floating_point_import.visibility = View.VISIBLE
+            floating_point_reload.visibility = View.VISIBLE
         }
         else {
             floating_point_create.visibility = View.INVISIBLE
-            floating_point_import.visibility = View.INVISIBLE
+            floating_point_reload.visibility = View.INVISIBLE
         }
     }
 
+    private fun reloadActivity() {
+        val categoriesArray: ArrayList<String> = ArrayList()
+        val trimmer = arrayListOf(".json", "/")
+        val jsonDirectory = applicationContext.filesDir.toString()
+        println("my dir $jsonDirectory")
+
+        val openFAB: FloatingActionButton = findViewById(R.id.floating_point)
+        val createFAB: FloatingActionButton = findViewById(R.id.floating_point_create)
+        val reloadFAB: FloatingActionButton = findViewById(R.id.floating_point_reload)
+
+        //using all stored json files for ListView items
+        File(applicationContext.filesDir.toString()).walk().forEach {
+            if (it.toString() != jsonDirectory)
+                categoriesArray.add(it.toString().split(trimmer[0], trimmer[1])[6])
+        }
+
+        //creating ListView
+        val listView: ListView = findViewById(R.id.main_listview)
+        listView.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, categoriesArray)
+
+        //creating listeners for ListView items
+        listView.setOnItemClickListener { adapterview, view, i, l ->
+            Toast.makeText(applicationContext, categoriesArray[i], Toast.LENGTH_SHORT).show()
+            startFileActivity(categoriesArray[i])
+        }
+    }
+
+    //directs to new activity of chosen file
     private fun startEditorActivity() {
         val intent = Intent(this, EditorActivity::class.java)
         startActivity(intent)
     }
-
 }
