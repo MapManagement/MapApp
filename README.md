@@ -1,4 +1,4 @@
-#Version 1.0
+# Version 1.0
 First running version of my app: [Release 1.0](app/release/app-release.apk)
 
 # MapApp
