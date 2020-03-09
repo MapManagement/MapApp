@@ -29,14 +29,15 @@
     <Button
             android:id="@+id/file_delete_button"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="75dp"
             android:text="@string/deleteFileButton"
             android:textSize="15sp"
-            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimaryDark"
             android:layout_marginBottom="10dp"
 
-            app:layout_constraintBottom_toTopOf="@id/edit_file_button"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/start_game_button"
+            app:layout_constraintStart_toEndOf="@id/edit_file_button"
             app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
@@ -45,20 +46,22 @@
             android:layout_height="75dp"
             android:text="@string/editFile"
             android:textSize="20sp"
+            android:textColor="@color/white"
             android:background="@color/colorPrimary"
             android:layout_marginBottom="10dp"
 
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/file_delete_button"
             app:layout_constraintBottom_toTopOf="@id/start_game_button"
             app:layout_constraintHorizontal_bias="0.0"/>
 
     <Button
             android:id="@+id/start_game_button"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="75dp"
             android:text="@string/startGame"
             android:textSize="25sp"
+            android:textColor="@color/white"
             android:background="@color/colorPrimary"
 
             app:layout_constraintBottom_toBottomOf="parent"

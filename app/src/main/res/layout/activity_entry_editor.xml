@@ -68,7 +68,8 @@
             android:layout_height="60dp"
             android:textSize="20sp"
             android:text="@string/deleteEntryButton"
-            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimaryDark"
             android:layout_marginBottom="10dp"
 
             app:layout_constraintStart_toStartOf="parent"
@@ -80,6 +81,7 @@
             android:layout_width="0dp"
             android:layout_height="80dp"
             android:textSize="20sp"
+            android:textColor="@color/white"
             android:text="@string/entryEditButton"
             android:background="@color/colorPrimary"
 
