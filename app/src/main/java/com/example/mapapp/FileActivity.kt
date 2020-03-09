@@ -1,8 +1,10 @@
 package com.example.mapapp
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import org.json.JSONObject
 import java.io.File
@@ -56,10 +58,22 @@ class FileActivity: AppCompatActivity() {
     }
 
     private fun deleteFile() {
-        val jsonFile = File(applicationContext.filesDir, "$chosenFile.json")
-        jsonFile.delete()
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+        val alertButton = AlertDialog.Builder(this)
+        alertButton.setMessage("Do you really want to delete this file?")
+            .setCancelable(false)
+            .setPositiveButton("Delete", DialogInterface.OnClickListener { dialog, which ->
+                val jsonFile = File(applicationContext.filesDir, "$chosenFile.json")
+                jsonFile.delete()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            })
+            .setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which ->
+                val intent = Intent(this, FileActivity::class.java)
+                startActivity(intent)
+            })
+        val alert = alertButton.create()
+        alert.setTitle("Deleting File")
+        alert.show()
     }
 
     override fun onBackPressed() {

@@ -73,6 +73,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("RestrictedApi")
     private fun reloadActivity() {
         val categoriesArray: ArrayList<String> = ArrayList()
         val trimmer = arrayListOf(".json", "/")
@@ -98,6 +99,9 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, categoriesArray[i], Toast.LENGTH_SHORT).show()
             startFileActivity(categoriesArray[i])
         }
+
+        floating_point_create.visibility = View.INVISIBLE
+        floating_point_reload.visibility = View.INVISIBLE
     }
 
     //directs to new activity of chosen file
