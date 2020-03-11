@@ -9,6 +9,7 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_game.*
 import org.json.JSONException
 import java.io.File
@@ -17,6 +18,9 @@ import kotlin.math.abs
 var currentJSONEntries = JSONObject()
 var currentSolution: String = ""
 var currentQuestion: String = ""
+var lastSolution: String = ""
+var lastQuestion: String = ""
+
 var availableQuestions: JSONObject = JSONObject("""{"empty": "empty"}""")
 
 class GameActivity: AppCompatActivity(), GestureDetector.OnGestureListener {
@@ -64,9 +68,14 @@ class GameActivity: AppCompatActivity(), GestureDetector.OnGestureListener {
 
                 if (abs(distanceFloatX) > MIN_DISTANCE) {
                     if (x_end <= x_start){
-                        val animation = AnimationUtils.loadAnimation(this, R.anim.fade_out)
+                        val animation = AnimationUtils.loadAnimation(this, R.anim.fade_out_right)
                         mytext.startAnimation(animation)
                         nextQuestion()
+                    }
+                    else if (x_end > x_start){
+                        val animation = AnimationUtils.loadAnimation(this, R.anim.fade_out_left)
+                        mytext.startAnimation(animation)
+                        lastQuestion()
                     }
                 }
 
@@ -81,6 +90,16 @@ class GameActivity: AppCompatActivity(), GestureDetector.OnGestureListener {
 
         }
         return super.onTouchEvent(event)
+    }
+
+    //shows previous question/solution (can only go back by one step)
+    private fun lastQuestion() {
+        if (currentQuestion.isEmpty()) {
+            Toast.makeText(this, "Not possible now!", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            mytext.text = lastQuestion
+        }
     }
 
     //decides whether a new game was started
@@ -98,8 +117,15 @@ class GameActivity: AppCompatActivity(), GestureDetector.OnGestureListener {
     //changes text of text view when solution button is pressed
     private fun showSolution() {
         if (currentSolution.isNotEmpty()) {
-            mytext.text = currentSolution
-            deleteEntries()
+            if (mytext.text == lastQuestion || mytext.text == lastSolution)
+            {
+                mytext.text = lastSolution
+                deleteEntries(lastQuestion)
+            }
+            else {
+                mytext.text = currentSolution
+                deleteEntries(currentQuestion)
+            }
         }
     }
 
@@ -123,6 +149,8 @@ class GameActivity: AppCompatActivity(), GestureDetector.OnGestureListener {
             }
 
             val chosenSolution = jsonQAS.getString(chosenQuestion)
+            lastQuestion = currentQuestion
+            lastSolution = currentSolution
             currentQuestion = chosenQuestion
             currentSolution = chosenSolution
 
@@ -138,8 +166,8 @@ class GameActivity: AppCompatActivity(), GestureDetector.OnGestureListener {
     }
 
     //pops answered question out of available ones
-    private fun deleteEntries() {
-        availableQuestions.remove(currentQuestion)
+    private fun deleteEntries(question: String) {
+        availableQuestions.remove(question)
     }
 
     //sets endscreen of game
