@@ -24,7 +24,7 @@
 
         <activity android:name=".GameActivity"/>
         <activity android:name=".FileActivity"/>
-        <activity android:name=".EditorActivity"/>
+        <activity android:name=".FileCreatorActivity"/>
         <activity android:name=".FileEditorActivity"/>
         <activity android:name=".EntryEditorActivity"/>
 

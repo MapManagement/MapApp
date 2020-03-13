@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
 
     //directs to new activity of chosen file
     private fun startEditorActivity() {
-        val intent = Intent(this, EditorActivity::class.java)
+        val intent = Intent(this, FileCreatorActivity::class.java)
         startActivity(intent)
     }
 }

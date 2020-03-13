@@ -17,7 +17,7 @@ class FileEditorActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_file_editor)
+        setContentView(R.layout.activity_file_entry_viewer)
 
         //elements of xml file
         val fileNameTextView: TextView = findViewById(R.id.file_editor_filename)

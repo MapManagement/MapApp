@@ -4,20 +4,19 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
-import kotlinx.android.synthetic.main.activity_editor.*
+import kotlinx.android.synthetic.main.activity_file_creator.*
 import org.json.JSONObject
 import java.io.File
-import java.io.InputStream
 import java.util.*
 
 
-class EditorActivity: AppCompatActivity() {
+class FileCreatorActivity: AppCompatActivity() {
 
     private val fileMap: MutableMap<String, String> = mutableMapOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_editor)
+        setContentView(R.layout.activity_file_creator)
 
         //all items used in EditorActivity
         val questionInput: EditText = findViewById(R.id.setQuestionName)
