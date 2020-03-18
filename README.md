@@ -1,5 +1,6 @@
 # Version 1.0
-First running version of my app: [Release 1.0](app/release/app-release.apk)
+First running APK of my app: [Release 1.0](app/release/app-release.apk)\
+(new one is finished but not tested yet)
 
 # MapApp
 Small Android application written in Kotlin. Intention is to create
